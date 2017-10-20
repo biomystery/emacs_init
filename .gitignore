@@ -1,0 +1,8 @@
+auto-save-list/
+ido.last
+backups/
+.backup/
+elpa/
+abbrev_defs
+lisp/*
+snippets/*
