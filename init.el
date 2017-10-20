@@ -255,7 +255,7 @@ Uses `current-date-time-format' for the formatting the date/time."
 (defun insert-timestamp-tag ()
   "Insert the timestamp tag; only works in the first 5 lines to allow automatic update"
   (interactive)
-  (insert "Time-stamp: <>")
+  (insert "Time-stamp: \" \"")
   (insert "\n")
   )
 (global-set-key "\C-x\C-t" 'insert-timestamp-tag)
