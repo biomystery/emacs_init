@@ -34,8 +34,26 @@
 (setq delete-old-versions t)
 (setq kept-old-versions 2)
 (setq dired-kept-versions 1)
-(setq backup-directory-alist '((".*" . "~/.emacs.d/.backup")))
-(setq auto-save-file-name-transforms '((".*" , backup-directory-alist t)))
+;; Save all tempfiles in $TMPDIR/emacs$UID/                                                        
+(defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) "~/.emacs.d/.backup"))
+(setq backup-directory-alist
+      `((".*" . ,emacs-tmp-dir)))
+(setq auto-save-file-name-transforms
+      `((".*" ,emacs-tmp-dir t)))
+(setq auto-save-list-file-prefix
+      emacs-tmp-dir)
+;(setq backup-directory-alist '((".*" . "~/.emacs.d/.backup")))
+;(setq auto-save-file-name-transforms '((".*" , backup-directory-alist t)))
+
+(defun full-auto-save ()
+  (interactive)
+  (save-excursion
+    (dolist (buf (buffer-list))
+      (set-buffer buf)
+      (if (and (buffer-file-name) (buffer-modified-p))
+          (basic-save-buffer)))))
+(add-hook 'auto-save-hook 'full-auto-save)
+
 (setq backup-by-copying t)
 
 
@@ -262,3 +280,7 @@ Uses `current-date-time-format' for the formatting the date/time."
 (global-set-key "\C-x\C-t" 'insert-timestamp-tag)
 
 
+;;------------------------------------------------------------
+;; shell cmd on buffer 
+;;  https://www.emacswiki.org/emacs/ExecuteExternalCommand
+;;------------------------------------------------------------
