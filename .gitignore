@@ -7,4 +7,5 @@ abbrev_defs
 lisp/*
 snippets/*
 site-lisp/
-.emacs 
+.emacs
+SessionDesktop*
