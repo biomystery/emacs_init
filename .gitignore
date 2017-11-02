@@ -6,3 +6,4 @@ elpa/
 abbrev_defs
 lisp/*
 snippets/*
+site-lisp/

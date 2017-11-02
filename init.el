@@ -35,7 +35,7 @@
 (setq kept-old-versions 2)
 (setq dired-kept-versions 1)
 (setq backup-directory-alist '((".*" . "~/.emacs.d/.backup")))
-(setq auto-save-file-name-transforms '((".*" , "~/.emacs.d/.backup" t)))
+(setq auto-save-file-name-transforms '((".*" , backup-directory-alist t)))
 (setq backup-by-copying t)
 
 
